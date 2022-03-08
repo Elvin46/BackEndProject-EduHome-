@@ -84,17 +84,38 @@ namespace EduHome_BackEndProject_.Migrations
                     b.ToTable("Bios");
                 });
 
-            modelBuilder.Entity("EduHome_BackEndProject_.Models.Category", b =>
+            modelBuilder.Entity("EduHome_BackEndProject_.Models.Blog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<string>("ByWho")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("Comment")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset?>("Created")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -102,6 +123,26 @@ namespace EduHome_BackEndProject_.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.ToTable("Blogs");
+                });
+
+            modelBuilder.Entity("EduHome_BackEndProject_.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
@@ -151,6 +192,9 @@ namespace EduHome_BackEndProject_.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Language")
                         .IsRequired()
@@ -212,12 +256,18 @@ namespace EduHome_BackEndProject_.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTimeOffset?>("Created")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -236,6 +286,8 @@ namespace EduHome_BackEndProject_.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Events");
                 });
@@ -401,6 +453,9 @@ namespace EduHome_BackEndProject_.Migrations
 
                     b.Property<int>("InnovationPercent")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("LanguagePercent")
                         .HasColumnType("int");
@@ -678,17 +733,32 @@ namespace EduHome_BackEndProject_.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("EduHome_BackEndProject_.Models.Category", b =>
+            modelBuilder.Entity("EduHome_BackEndProject_.Models.Blog", b =>
                 {
-                    b.HasOne("EduHome_BackEndProject_.Models.Category", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("CategoryId");
+                    b.HasOne("EduHome_BackEndProject_.Models.Category", "Category")
+                        .WithMany("Blogs")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("EduHome_BackEndProject_.Models.Course", b =>
                 {
                     b.HasOne("EduHome_BackEndProject_.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Courses")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("EduHome_BackEndProject_.Models.Event", b =>
+                {
+                    b.HasOne("EduHome_BackEndProject_.Models.Category", "Category")
+                        .WithMany("Events")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -768,7 +838,11 @@ namespace EduHome_BackEndProject_.Migrations
 
             modelBuilder.Entity("EduHome_BackEndProject_.Models.Category", b =>
                 {
-                    b.Navigation("Categories");
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Courses");
+
+                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("EduHome_BackEndProject_.Models.Event", b =>

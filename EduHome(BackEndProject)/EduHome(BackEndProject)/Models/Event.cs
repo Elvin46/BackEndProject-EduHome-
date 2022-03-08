@@ -20,5 +20,9 @@ namespace EduHome_BackEndProject_.Models
         public string Venue { get; set; }
         public DateTimeOffset? Created { get; set; } = DateTime.UtcNow;
         public ICollection<EventsTeachers> EventsTeachers { get; set; }
+        [Required]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

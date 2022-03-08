@@ -9,6 +9,9 @@ namespace EduHome_BackEndProject_.Models
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
-        public ICollection<Category> Categories { get; set; }
+        public bool IsDeleted { get; set; } = false;
+        public ICollection<Course> Courses { get; set; }
+        public ICollection<Blog> Blogs { get; set; }
+        public ICollection<Event> Events { get; set; }
     }
 }

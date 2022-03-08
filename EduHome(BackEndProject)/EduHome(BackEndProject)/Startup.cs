@@ -1,4 +1,5 @@
 using EduHome_BackEndProject_.DataAccessLayer;
+using EduHome_BackEndProject_.Areas.AdminPanel.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,7 +37,7 @@ namespace EduHome_BackEndProject_
                 options.UseSqlServer(connectionString);
             });
             services.AddControllersWithViews().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-            //Constants.ImageFolderPath = Path.Combine(_enviroment.WebRootPath, "assets", "images");
+            Constants.ImageFolderPath = Path.Combine(_enviroment.WebRootPath, "img");
 
 
         }
@@ -62,6 +64,7 @@ namespace EduHome_BackEndProject_
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(name: "areas",pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

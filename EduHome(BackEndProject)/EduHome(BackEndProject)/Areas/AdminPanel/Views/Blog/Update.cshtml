@@ -1,0 +1,75 @@
+﻿@model Blog;
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Default form</h4>
+                <p class="card-description">
+                Basic form layout
+                </p>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input class="form-control" placeholder="Title" asp-for="Title">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ByWho">ByWho</label>
+                        <input class="form-control" placeholder="ByWho" asp-for="ByWho">
+                        <span asp-validation-for="ByWho" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description">Description</label>
+                        <textarea class="form-control" placeholder="Description" asp-for="Description" rows="4"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="Category">Category</label>
+                        <select class="form-control" name="CategoryId">
+                            <option value="0">--Select Category--</option>
+                            @foreach (var item in ViewBag.Categories)
+                           {
+                               if (item == Model.Category)
+                               {
+                                    <option value="@item.Id" selected>@item.Name</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="photoDiv">
+                        <label asp-for="Photo">Photo</label>
+                        <input class="form-control"  placeholder="Photo" asp-for="Photo" accept="image/*">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <a class="btn btn-light" asp-action="Index">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#Description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+}
+
+
+

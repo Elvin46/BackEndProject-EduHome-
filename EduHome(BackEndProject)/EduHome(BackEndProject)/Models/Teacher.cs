@@ -12,6 +12,7 @@ namespace EduHome_BackEndProject_.Models
         [Required]
         [StringLength(50)]
         public string Profession { get; set; }
+        public bool IsDeleted { get; set; } = false;
         [Required]
         [StringLength(1000)]
         public string About { get; set; }

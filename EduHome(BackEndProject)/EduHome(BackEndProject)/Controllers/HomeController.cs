@@ -34,6 +34,7 @@ namespace EduHome_BackEndProject_.Controllers
             var courses = await _dbContext.Courses.Take(3).ToListAsync();
             var coursesSection = await _dbContext.CoursesSections.SingleOrDefaultAsync();
             var events = await _dbContext.Events.Take(3).ToListAsync();
+            var blogs = await _dbContext.Blogs.Take(3).ToListAsync();
             return View(new HomeViewModel
             {
                 Sliders = sliders,
@@ -44,7 +45,8 @@ namespace EduHome_BackEndProject_.Controllers
                 Subscribe = subscribe,
                 Courses = courses,
                 CoursesSection = coursesSection,
-                Events = events
+                Events = events,
+                Blogs = blogs
             });
         }
     }

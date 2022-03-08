@@ -21,5 +21,6 @@ namespace EduHome_BackEndProject_.DataAccessLayer
         public DbSet<Event> Events { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<EventsTeachers> EventsTeachers { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 }
