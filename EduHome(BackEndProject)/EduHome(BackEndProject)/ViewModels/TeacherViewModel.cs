@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EduHome_BackEndProject_.Models;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EduHome_BackEndProject_.Models
+namespace EduHome_BackEndProject_.ViewModels
 {
-    public class Teacher
+    public class TeacherViewModel
     {
         public int Id { get; set; }
         [Required]
@@ -14,9 +15,6 @@ namespace EduHome_BackEndProject_.Models
         [Required]
         [StringLength(50)]
         public string Profession { get; set; }
-        [StringLength(50)]
-        public string Image { get; set; }
-        public bool IsDeleted { get; set; } = false;
         [Required]
         [StringLength(1000)]
         public string About { get; set; }
@@ -61,9 +59,7 @@ namespace EduHome_BackEndProject_.Models
         public int InnovationPercent { get; set; }
         [Required]
         public int CommunicationPercent { get; set; }
-        public ICollection<EventsTeachers> EventsTeachers { get; set; }
         [NotMapped]
-        [Required]
         public IFormFile Photo { get; set; }
     }
 }

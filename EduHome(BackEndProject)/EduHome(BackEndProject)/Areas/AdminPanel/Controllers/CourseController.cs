@@ -11,19 +11,19 @@ using System.Threading.Tasks;
 namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    public class BlogController : Controller
+    public class CourseController : Controller
     {
         private readonly AppDbContext _dbContext;
 
-        public BlogController(AppDbContext dbContext)
+        public CourseController(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
         public async Task<IActionResult> Index()
         {
-            var blogs = await _dbContext.Blogs.Include(x=> x.Category).Where(x => !x.IsDeleted).ToListAsync();
+            var courses = await _dbContext.Courses.Include(x => x.Category).Where(x => !x.IsDeleted).ToListAsync();
 
-            return View(blogs);
+            return View(courses);
         }
         public async Task<IActionResult> Create()
         {
@@ -35,7 +35,7 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Blog blog,int CategoryId)
+        public async Task<IActionResult> Create(Course course, int CategoryId)
         {
             var Categories = await _dbContext.Categories
                 .Where(x => x.IsDeleted == false)
@@ -45,37 +45,37 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             {
                 return View();
             }
-            if (blog == null)
+            if (course == null)
             {
                 return BadRequest();
             }
-            var isExistBlog = await _dbContext.Blogs.AnyAsync(x => x.IsDeleted == false && x.Title.ToLower() == blog.Title.ToLower());
+            var isExistBlog = await _dbContext.Courses.AnyAsync(x => x.IsDeleted == false && x.Name.ToLower() == course.Name.ToLower());
             if (isExistBlog)
             {
-                ModelState.AddModelError("ExistTitle", "This blog already exist");
+                ModelState.AddModelError("ExistTitle", "This course already exist");
                 return View();
             }
             var maxSize = 1;
-            if (blog.Photo == null)
+            if (course.Photo == null)
             {
                 ModelState.AddModelError("", "Please Choose Photo");
                 return View();
             }
-            if (!blog.Photo.IsImage())
+            if (!course.Photo.IsImage())
             {
                 ModelState.AddModelError("", "Upload Valid Images(png,jpg,jpeg)");
                 return View();
             }
-            if (!blog.Photo.IsAllowedSize(maxSize))
+            if (!course.Photo.IsAllowedSize(maxSize))
             {
                 ModelState.AddModelError("", $"This file is too large.Allowed maximum size is {maxSize}mb.");
                 return View();
             }
 
-            var fileName = await blog.Photo.GenerateFile(Constants.ImageFolderPath, "blog");
-            blog.Image = fileName;
-            blog.CategoryId = CategoryId;
-            await _dbContext.Blogs.AddAsync(blog);
+            var fileName = await course.Photo.GenerateFile(Constants.ImageFolderPath, "course");
+            course.Image = fileName;
+            course.CategoryId = CategoryId;
+            await _dbContext.Courses.AddAsync(course);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -85,15 +85,15 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             {
                 return BadRequest();
             }
-            Blog existBlog = await _dbContext.Blogs.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
-            if (existBlog == null)
+            Course existCourse = await _dbContext.Courses.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
+            if (existCourse == null)
                 return Json(new { status = 404 });
-            var path = Path.Combine(Constants.ImageFolderPath, "blog" ,existBlog.Image);
+            var path = Path.Combine(Constants.ImageFolderPath, "course", existCourse.Image);
             if (System.IO.File.Exists(path))
             {
                 System.IO.File.Delete(path);
             }
-            existBlog.IsDeleted = true;
+            existCourse.IsDeleted = true;
             await _dbContext.SaveChangesAsync();
             return Json(new { status = 200 });
         }
@@ -103,11 +103,11 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             {
                 return BadRequest();
             }
-            Blog existBlog = await _dbContext.Blogs.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
-            if (existBlog == null)
+            Course existCourse = await _dbContext.Courses.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
+            if (existCourse == null)
                 return NotFound();
 
-            return View(existBlog);
+            return View(existCourse);
         }
         public async Task<IActionResult> Update(int? id)
         {
@@ -119,14 +119,14 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             {
                 return BadRequest();
             }
-            Blog isExistBlog = _dbContext.Blogs.Where(x => x.IsDeleted == false).FirstOrDefault(x => x.Id == id);
-            if (isExistBlog == null)
+            Course isExistCourse = _dbContext.Courses.Where(x => x.IsDeleted == false).FirstOrDefault(x => x.Id == id);
+            if (isExistCourse == null)
                 return NotFound();
-            return View(isExistBlog);
+            return View(isExistCourse);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, BlogViewModel blogVM, int CategoryId)
+        public async Task<IActionResult> Update(int? id, CourseViewModel courseVM, int CategoryId)
         {
             var Categories = await _dbContext.Categories
                 .Where(x => x.IsDeleted == false)
@@ -136,55 +136,65 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             {
                 return BadRequest();
             }
-            if (id != blogVM.Id)
+            if (id != courseVM.Id)
             {
                 return BadRequest();
             }
-            var existBlog = await _dbContext.Blogs.Where(x => x.IsDeleted == false && x.Id == id).FirstOrDefaultAsync();
-            if (existBlog == null)
+            var existCourse = await _dbContext.Courses.Where(x => x.IsDeleted == false && x.Id == id).FirstOrDefaultAsync();
+            if (existCourse == null)
             {
                 return NotFound();
             }
             if (!ModelState.IsValid)
             {
-                return View(existBlog);
+                return View(existCourse);
             }
-            var isExist = await _dbContext.Blogs.AnyAsync(x => x.IsDeleted == false && x.Title.ToLower() == blogVM.Title.ToLower() && x.Id != blogVM.Id);
+            var isExist = await _dbContext.Courses.AnyAsync(x => x.IsDeleted == false && x.Name.ToLower() == courseVM.Name.ToLower() && x.Id != courseVM.Id);
             if (isExist)
             {
-                ModelState.AddModelError("Title", "This blog is already exist");
-                return View(existBlog);
+                ModelState.AddModelError("Title", "This course is already exist");
+                return View(existCourse);
             }
-            if (blogVM.Photo != null)
+            if (courseVM.Photo != null)
             {
-                if (!blogVM.Photo.IsImage())
+                if (!courseVM.Photo.IsImage())
                 {
                     ModelState.AddModelError("Photo", "It must be photo(jpg,png)");
-                    return View(existBlog);
+                    return View(existCourse);
                 }
-                if (!blogVM.Photo.IsAllowedSize(1))
+                if (!courseVM.Photo.IsAllowedSize(1))
                 {
                     ModelState.AddModelError("Photo", "Size of photo has to be under 1 mb");
-                    return View(blogVM);
+                    return View(courseVM);
                 }
-                var path = Path.Combine(Constants.ImageFolderPath, "blog", existBlog.Image);
+                var path = Path.Combine(Constants.ImageFolderPath, "blog", existCourse.Image);
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
                 }
-                var fileName = await blogVM.Photo.GenerateFile(Constants.ImageFolderPath, "blog");
-                existBlog.Image = fileName;
+                var fileName = await courseVM.Photo.GenerateFile(Constants.ImageFolderPath, "course");
+                existCourse.Image = fileName;
             }
-            existBlog.CategoryId = CategoryId;
-            existBlog = new Blog
+            existCourse.CategoryId = CategoryId;
+            existCourse = new Course
             {
-                Title = blogVM.Title,
-                ByWho = blogVM.ByWho,
-                Description = blogVM.Description
+                Name = courseVM.Name,
+                Description = courseVM.Description,
+                AboutCourse = courseVM.AboutCourse,
+                HowToApply = courseVM.HowToApply,
+                Certification = courseVM.Certification,
+                StartDate = courseVM.StartDate,
+                Duration = courseVM.Duration,
+                ClassDuration = courseVM.ClassDuration,
+                SkillLevel = courseVM.SkillLevel,
+                Language = courseVM.Language,
+                StudentsCount = courseVM.StudentsCount,
+                Assesments = courseVM.Assesments,
+                Price = courseVM.Price
             };
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
+

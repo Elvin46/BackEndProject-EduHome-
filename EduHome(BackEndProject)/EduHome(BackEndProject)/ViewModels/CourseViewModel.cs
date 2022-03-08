@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EduHome_BackEndProject_.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EduHome_BackEndProject_.Models
+namespace EduHome_BackEndProject_.ViewModels
 {
-    public class Course
+    public class CourseViewModel
     {
         public int Id { get; set; }
         [Required]
@@ -14,8 +15,6 @@ namespace EduHome_BackEndProject_.Models
         [Required]
         [StringLength(1000)]
         public string Description { get; set; }
-        [StringLength(100)]
-        public string Image { get; set; }
         [Required]
         [StringLength(1000)]
         public string AboutCourse { get; set; }
@@ -46,11 +45,8 @@ namespace EduHome_BackEndProject_.Models
         [Required]
         public double Price { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
-        public bool IsDeleted { get; set; } = false;
         [NotMapped]
         [Required]
         public IFormFile Photo { get; set; }
-
     }
 }
