@@ -30788,3 +30788,239 @@ div.tagsinput span.tag a {
 .course-details-right ul li span{float: right}
 .course-details-right h3.red{color: #EC1C23; margin-bottom: 0;}
 .course-details-content p.margin{margin-bottom: 15px}
+
+/* TEACHER CSS */
+.single-teacher{
+  position: relative;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+.single-teacher-img {
+  line-height: 0;
+  padding-bottom: 91px;
+}
+.single-teacher-img a{ 
+  position: relative;
+  display: block;
+}
+.single-teacher-img a:after{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: rgba(231, 231, 231, 0.84);
+  opacity: 0;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.single-teacher:hover .single-teacher-img a:after{opacity: 1}
+.single-teacher-content {
+  background: #fff none repeat scroll 0 0;
+  bottom: -70px;
+  left: 0;
+  padding: 20px 0 30px;
+  position: absolute;
+  width: 100%;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.single-teacher:hover .single-teacher-content{bottom: 00px}
+.single-teacher-content h2 {
+  color: #303030;
+  font-family: "Open Sans",sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.single-teacher-content h4{
+  color: #929292;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+.single-teacher-content ul li{
+  display: inline-block;
+  margin-right: 5px;
+}
+.single-teacher-content ul li:last-child{
+  margin-right: 0px;
+}
+.single-teacher-content ul li a i{
+  font-size: 15px;
+  color: #2c2b5e;
+  background: #F6F6F6;
+  height: 40px;
+  width: 38px;
+  text-align: center;
+  line-height: 40px;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.single-teacher-content ul li:hover a i{
+  color: #fff;
+  background: #EC1C23;
+}
+.pagination ul{margin-top: 24px}
+.pagination ul li{display: inline-block; margin-right: 12px}
+.pagination ul li:last-child{margin-right: 0px}
+.pagination ul li a{    
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  color: #606060;
+  background: #fff;
+  text-align: center;
+  line-height: 36px;
+  height: 38px; 
+  width: 38px;
+  display: block; 
+  border: 1px solid #EBEBEB;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.pagination ul li:hover a{    
+  color: #fff;
+  background: #2C2B5E;  
+}
+.teacher-details-content{margin-top: 26px}
+.teacher-details-content h2 {
+  color: #303030;
+  font-family: "Open Sans",sans-serif;
+  font-size: 32px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.teacher-details-content h5{
+  font-size: 22px;
+  color: #929292;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+.teacher-details-content h4{
+  font-size: 24px;
+  color: #303030;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.teacher-details-content p{
+  font-size: 14px;
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 38px;
+}
+.teacher-details-content ul li span{
+  font-size: 14px;
+  color: #303030;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.teacher-details-content ul li{
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.teacher-contact, .skill-area{margin-top: 58px}
+.skill-area{margin-left: 40px}
+.teacher-contact h4, .skill-area h4{
+  font-size: 20px;
+  color: #303030;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+.teacher-contact p span{
+  font-size: 14px;
+  font-weight: 700;
+  color: #303030;
+  text-transform: uppercase;
+}
+.teacher-contact p{
+  font-weight: 600;
+  color: #606060;
+  margin-bottom: 10px;
+}
+.teacher-contact ul{margin-top: 30px}
+.teacher-contact ul li{
+  font-weight: 600;
+  color: #606060;
+  display: inline-block;
+  margin-right: 5px; 
+}
+.teacher-contact ul li a i{
+  font-size: 15px;
+  color: #2c2b5e;
+  background: #F6F6F6;
+  text-align: center;
+  line-height: 30px;
+  width: 34px;
+  height: 32px;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.teacher-contact ul li:hover a i{
+  color: #F6F6F6;
+  background: #2c2b5e;
+}
+.skill-bar-item > span {
+  color: #606060;
+  display: block;
+  font-family: "Open Sans",sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+.skill-bar-item{overflow: hidden; padding-top: 5px; margin-left: 40px}
+.progress {
+  background-color: #e8e8e8;
+  border-radius: 0;
+  height: 10px;
+  margin-bottom: 40px;
+  overflow: visible;
+}
+.progress-bar {
+  background-color: #d4d3d3;
+  position: relative;
+  box-shadow: none;
+}
+.progress-bar span.text-top {
+  background: #e6e6e6 none repeat scroll 0 0;
+  color: #606060;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  position: absolute;
+  right: 0;
+  top: -38px;
+  z-index: 8;
+}
+.skill-bar-item .text-top::after {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #e6e6e6 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  border-image: none;
+  border-style: solid;
+  border-width: 7px;
+  bottom: -14px;
+  content: "";
+  height: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  width: 0;
+}

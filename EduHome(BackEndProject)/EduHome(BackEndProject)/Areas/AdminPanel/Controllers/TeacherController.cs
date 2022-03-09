@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
     public class TeacherController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -105,10 +106,10 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             {
                 return BadRequest();
             }
-            Course isExistCourse = _dbContext.Courses.Where(x => x.IsDeleted == false).FirstOrDefault(x => x.Id == id);
-            if (isExistCourse == null)
+            Teacher isExistTeacher = _dbContext.Teachers.Where(x => x.IsDeleted == false).FirstOrDefault(x => x.Id == id);
+            if (isExistTeacher == null)
                 return NotFound();
-            return View(isExistCourse);
+            return View(isExistTeacher);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

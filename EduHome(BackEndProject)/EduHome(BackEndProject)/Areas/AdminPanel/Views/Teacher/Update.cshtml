@@ -1,0 +1,141 @@
+﻿@model Teacher;
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Default form</h4>
+                <p class="card-description">
+                Basic form layout
+                </p>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Name">Name</label>
+                        <input class="form-control" placeholder="Name" asp-for="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Profession">Profession</label>
+                        <input class="form-control" placeholder="Profession" asp-for="Profession" rows="4">
+                        <span asp-validation-for="Profession" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Degree">Degree</label>
+                        <input class="form-control" placeholder="Degree" asp-for="Degree" rows="4">
+                        <span asp-validation-for="Degree" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Experience">Experience</label>
+                        <input class="form-control" placeholder="Experience" asp-for="Experience" rows="4">
+                        <span asp-validation-for="Experience" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Hobbies">Hobbies</label>
+                        <input class="form-control" placeholder="Hobbies" asp-for="Hobbies" rows="4">
+                        <span asp-validation-for="Hobbies" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Faculty">Faculty</label>
+                        <input class="form-control" placeholder="Faculty" asp-for="Faculty">
+                        <span asp-validation-for="Faculty" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mail">Mail</label>
+                        <input class="form-control" placeholder="Mail" asp-for="Mail">
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber">PhoneNumber</label>
+                        <input class="form-control" placeholder="PhoneNumber" asp-for="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Skype">Skype</label>
+                        <input class="form-control" placeholder="Skype" asp-for="Skype">
+                        <span asp-validation-for="Skype" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FacebookUrl">FacebookUrl</label>
+                        <input class="form-control" placeholder="FacebookUrl" asp-for="FacebookUrl">
+                        <span asp-validation-for="FacebookUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PinterestUrl">PinterestUrl</label>
+                        <input class="form-control" placeholder="PinterestUrl" asp-for="PinterestUrl">
+                        <span asp-validation-for="PinterestUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LinkedinUrl">LinkedinUrl</label>
+                        <input class="form-control" placeholder="LinkedinUrl" asp-for="LinkedinUrl">
+                        <span asp-validation-for="LinkedinUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TwitterUrl">TwitterUrl</label>
+                        <input class="form-control" placeholder="TwitterUrl" asp-for="TwitterUrl">
+                        <span asp-validation-for="TwitterUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LanguagePercent">LanguagePercent</label>
+                        <input class="form-control" placeholder="LanguagePercent" asp-for="LanguagePercent">
+                        <span asp-validation-for="LanguagePercent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TeamLeaderPercent">TeamLeaderPercent</label>
+                        <input class="form-control" placeholder="TeamLeaderPercent" asp-for="TeamLeaderPercent">
+                        <span asp-validation-for="TeamLeaderPercent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DevelopmentPercent">DevelopmentPercent</label>
+                        <input class="form-control" placeholder="DevelopmentPercent" asp-for="DevelopmentPercent">
+                        <span asp-validation-for="DevelopmentPercent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DesignPercent">DesignPercent</label>
+                        <input class="form-control" placeholder="DesignPercent" asp-for="DesignPercent">
+                        <span asp-validation-for="DesignPercent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InnovationPercent">InnovationPercent</label>
+                        <input class="form-control" placeholder="InnovationPercent" asp-for="InnovationPercent">
+                        <span asp-validation-for="InnovationPercent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CommunicationPercent">CommunicationPercent</label>
+                        <input class="form-control" placeholder="CommunicationPercent" asp-for="CommunicationPercent">
+                        <span asp-validation-for="CommunicationPercent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="About">About</label>
+                        <textarea class="form-control" placeholder="About" asp-for="About"></textarea>
+                        <span asp-validation-for="About" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" id="photoDiv">
+                        <label asp-for="Photo">Photo</label>
+                        <input class="form-control"  placeholder="Photo" asp-for="Photo" accept="image/*">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <a class="btn btn-light" asp-action="Index">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#About' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+}
+
+
+
