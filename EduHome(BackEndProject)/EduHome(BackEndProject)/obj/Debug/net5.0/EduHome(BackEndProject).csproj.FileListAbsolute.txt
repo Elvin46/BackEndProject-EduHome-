@@ -262,4 +262,6 @@ C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(Back
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\Components\Sidebar\Default.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Course\Index.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Course\Details.cshtml.g.cs
-C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\Components\Subscribe\Deafult.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\Components\Subscribe\Default.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs

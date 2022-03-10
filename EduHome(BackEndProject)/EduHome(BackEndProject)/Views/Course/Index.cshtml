@@ -37,7 +37,7 @@
                                 <div class="course-content">
                                     <h3><a href="course-details.html">CSE ENGINEERING</a></h3>
                                     <div class="mb-20" style="height: 72px; overflow:hidden;">
-                                        <p>@course.Description</p>
+                                        @Html.Raw(course.Description)
                                     </div>
                                     <a class="default-btn" asp-action="Details" asp-route-id="@course.Id">read more</a>
                                 </div>   
