@@ -1,7 +1,9 @@
 ﻿using EduHome_BackEndProject_.DataAccessLayer;
+using EduHome_BackEndProject_.Models;
 using EduHome_BackEndProject_.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,10 +22,14 @@ namespace EduHome_BackEndProject_.ViewComponents
             var categories = await _dbContext.Categories.ToListAsync();
             blogs.OrderBy(x=> x.Created);
             blogs.Reverse();
-            blogs.Take(3);
+            var latestBlogs = new List<Blog>();
+            for (int i = 0; i < 3; i++)
+            {
+                latestBlogs.Add(blogs[i]);
+            };
             return View(new SidebarViewModel
             {
-                Blogs = blogs,
+                Blogs = latestBlogs,
                 Categories = categories
             });
         }

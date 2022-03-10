@@ -24,7 +24,7 @@
         </div>
         <div class="single-blog-widget mb-47">
             <div class="single-blog-banner">
-                <a href="blog-details.html" id="blog"><img src="img/blog/blog-img.jpg" alt="blog"></a>
+                <a href="blog-details.html" id="blog"><img src="~/img/blog/blog-img.jpg" alt="blog"></a>
                 <h2>best<br> eductaion<br> theme</h2> 
             </div>
         </div>
@@ -32,9 +32,9 @@
             <h3>latest post</h3>
             @foreach (var blog in Model.Blogs)
            {
-              <div class="single-post mb-30">
+              <div class="single-post mb-30" style="height: 84px;">
                 <div class="single-post-img">
-                    <a href="blog-details.html"><img src="img/blog/@blog.Image" alt="post">
+                    <a href="blog-details.html"><img src="~/img/blog/@blog.Image" style="width: 95px; height:84px;" alt="post">
                         <div class="blog-hover">
                             <i class="fa fa-link"></i>
                         </div>
