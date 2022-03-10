@@ -267,3 +267,5 @@ C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(Back
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Teacher\Index.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Teacher\Details.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Event\Index.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Event\Details.cshtml.g.cs
