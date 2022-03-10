@@ -16,20 +16,13 @@ namespace EduHome_BackEndProject_.ViewComponents
         {
             _dbContext = dbContext;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int count)
         {
-            var blogs = await _dbContext.Blogs.ToListAsync();
+            var blogs = await _dbContext.Blogs.OrderByDescending(x=> x.Created).Take(count).ToListAsync();
             var categories = await _dbContext.Categories.ToListAsync();
-            blogs.OrderBy(x=> x.Created);
-            blogs.Reverse();
-            var latestBlogs = new List<Blog>();
-            for (int i = 0; i < 3; i++)
-            {
-                latestBlogs.Add(blogs[i]);
-            };
             return View(new SidebarViewModel
             {
-                Blogs = latestBlogs,
+                Blogs = blogs,
                 Categories = categories
             });
         }

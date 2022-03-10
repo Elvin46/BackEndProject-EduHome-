@@ -17,7 +17,7 @@ namespace EduHome_BackEndProject_.Models
         public string Time { get; set; }
         [Required]
         public string Venue { get; set; }
-        public DateTimeOffset? Created { get; set; } = DateTime.UtcNow;
+        public DateTimeOffset? Created { get; set; } = DateTime.UtcNow.AddHours(4);
         public ICollection<EventsTeachers> EventsTeachers { get; set; }
         [Required]
         public int CategoryId { get; set; }
