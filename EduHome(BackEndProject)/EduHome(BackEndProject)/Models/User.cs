@@ -1,0 +1,12 @@
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace EduHome_BackEndProject_.Models
+{
+    public class User : IdentityUser
+    {
+        public string Fullname { get; set; }
+        public bool IsActive { get; set; } = true;
+        public bool IsSubscribed { get; set; }
+        public int VerificationCode { get; set; }
+    }
+}
