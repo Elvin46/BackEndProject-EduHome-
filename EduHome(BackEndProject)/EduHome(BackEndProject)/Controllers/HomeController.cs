@@ -33,7 +33,7 @@ namespace EduHome_BackEndProject_.Controllers
             var subscribe = await _dbContext.Subscribes.SingleOrDefaultAsync();
             var courses = await _dbContext.Courses.Take(3).ToListAsync();
             var coursesSection = await _dbContext.CoursesSections.SingleOrDefaultAsync();
-            var events = await _dbContext.Events.Take(3).ToListAsync();
+            var events = await _dbContext.Events.Take(4).ToListAsync();
             var blogs = await _dbContext.Blogs.Take(3).ToListAsync();
             return View(new HomeViewModel
             {

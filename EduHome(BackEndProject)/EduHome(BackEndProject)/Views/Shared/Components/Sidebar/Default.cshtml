@@ -18,7 +18,7 @@
             <ul>
                 @foreach (var category in Model.Categories)
                {
-                    <li><a asp-action="CategoryFilter">@category.Name</a></li>
+                    <li><a asp-action="CategoryFilter" asp-route-id=@category.Id>@category.Name</a></li>
                }
             </ul>
         </div>

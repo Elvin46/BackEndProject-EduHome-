@@ -274,3 +274,9 @@ C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(Back
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Account\Verify.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Account\ForgetPassword.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Account\ResetPassword.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Course\CategoryFilter.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Blog\CategoryFilter.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Event\CategoryFilter.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SearchCoursePartial.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SearchBlogPartial.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SearchEventPartial.cshtml.g.cs

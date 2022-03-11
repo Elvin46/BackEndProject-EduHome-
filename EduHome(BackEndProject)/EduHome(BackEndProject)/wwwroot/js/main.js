@@ -127,4 +127,23 @@ $(".notice-left").niceScroll({
             
         });
 
-})(jQuery);	
+})(jQuery);
+
+//----------SEARCH--------
+
+$(document).ready(function () {
+    var searchedtext;
+    var controller = $("#controller").val();
+    $(document).on('keyup', `#search-${controller.toLowerCase()}`, function () {
+        $(`#${controller.toLowerCase()}-list`).empty();
+        searchedtext = $(this).val();
+        $.ajax({
+            type: "get",
+            url: `/${controller}/search?searchedtext=` + searchedtext,
+            success: function (res) {
+                console.log(res);
+                $(`#${controller.toLowerCase()}-list`).append(res);
+            }
+        })
+    });
+})

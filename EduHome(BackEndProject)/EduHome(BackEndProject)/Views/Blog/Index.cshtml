@@ -1,33 +1,48 @@
 ﻿@model List<Blog>
 @{
     ViewData["Title"] = "Index";
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
 }
 
 <!-- Blog Start -->
 <div class="blog-area pt-150 pb-150">
     <div class="container">
         <div class="row">
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
+                </div>
+                <div class="course-form">
+                    <form id="search" action="#">
+                        <input type="search" placeholder="Search..." name="search" id="search-blog"/>
+                        <input type="hidden"  name="controller" value="@controller" id="controller"/>
+                        <button type="submit">search</button>
+                    </form>
+                </div>
+            </div>
+        </div> 
+        <div class="row" id="blog-list">
             @foreach (var blog in Model)
             {
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-blog mb-60">
-                    <div class="blog-img">
-                        <a asp-action="Details" asp-route-id=@blog.Id><img src="~/img/blog/@blog.Image" alt="blog"></a>
-                        <div class="blog-hover">
-                            <i class="fa fa-link"></i>
+                    <div class="single-blog mb-60">
+                        <div class="blog-img">
+                            <a asp-action="Details" asp-route-id=@blog.Id><img src="~/img/blog/@blog.Image" alt="blog"></a>
+                            <div class="blog-hover">
+                                <i class="fa fa-link"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-top">
-                            <p>By @blog.ByWho  /  @String.Format("{0:d MMM, yyyy}",   blog.Created)  /  <i class="fa fa-comments-o"></i> 4</p>
-                        </div>
-                        <div class="blog-bottom">
-                            <h2><a asp-action="Details" asp-route-id=@blog.Id>I must explain to you how all this a mistaken idea </a></h2>
-                            <a asp-action="Details" asp-route-id=@blog.Id>read more</a>
+                        <div class="blog-content">
+                            <div class="blog-top">
+                                <p>By @blog.ByWho  /  @String.Format("{0:d MMM, yyyy}",   blog.Created)  /  <i class="fa fa-comments-o"></i> 4</p>
+                            </div>
+                            <div class="blog-bottom">
+                                <h2><a asp-action="Details" asp-route-id=@blog.Id>@blog.Title</a></h2>
+                                <a asp-action="Details" asp-route-id=@blog.Id>read more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             }
         </div>
         <div class="row">

@@ -1,6 +1,9 @@
 ﻿using EduHome_BackEndProject_.DataAccessLayer;
+using EduHome_BackEndProject_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EduHome_BackEndProject_.Controllers
@@ -36,6 +39,25 @@ namespace EduHome_BackEndProject_.Controllers
             }
 
             return View(existEvent);
+        }
+        public async Task<IActionResult> CategoryFilter(int? id)
+        {
+
+            var events = await _dbContext.Events.Where(x => x.CategoryId == id && !x.IsDeleted).ToListAsync();
+            return View(events);
+        }
+        public async Task<IActionResult> Search(string searchedText)
+        {
+            var events = new List<Event>();
+            if (searchedText == null)
+            {
+                events = await _dbContext.Events.ToListAsync();
+            }
+            else
+            {
+                events = await _dbContext.Events.Where(x => x.Title.ToLower().Contains(searchedText)).ToListAsync();
+            }
+            return PartialView("_SearchEventPartial", events);
         }
     }
 }

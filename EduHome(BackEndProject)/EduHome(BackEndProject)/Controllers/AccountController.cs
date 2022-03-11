@@ -83,7 +83,7 @@ namespace EduHome_BackEndProject_.Controllers
                 return View();
             }
             await _userManager.AddToRoleAsync(user, RoleConstants.UserRole);
-            var cookie = JsonConvert.SerializeObject(user);
+            var cookie = JsonConvert.SerializeObject(user.Id);
             Response.Cookies.Append("user",cookie);
             return RedirectToAction(nameof(Verify));
         }
@@ -142,7 +142,8 @@ namespace EduHome_BackEndProject_.Controllers
             {
                 return Content("Empty");
             }
-            var user = JsonConvert.DeserializeObject<User>(cookie);
+            var userId = JsonConvert.DeserializeObject<string>(cookie);
+            var user = await _userManager.FindByIdAsync(userId);
             if (passcode == user.VerificationCode)
             {
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
