@@ -51,6 +51,10 @@
     </div> 
 </div>       
 <!-- Course End -->
-@await Component.InvokeAsync("Subscribe");
+@if (User.Identity.IsAuthenticated)
+{ 
+    @await Component.InvokeAsync("Subscribe");
+}
+
 
 

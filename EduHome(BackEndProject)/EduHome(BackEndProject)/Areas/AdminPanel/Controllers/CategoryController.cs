@@ -1,6 +1,8 @@
 ﻿using EduHome_BackEndProject_.Areas.AdminPanel.Data;
+using EduHome_BackEndProject_.Data;
 using EduHome_BackEndProject_.DataAccessLayer;
 using EduHome_BackEndProject_.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize(Roles = RoleConstants.AdminRole)]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _dbContext;

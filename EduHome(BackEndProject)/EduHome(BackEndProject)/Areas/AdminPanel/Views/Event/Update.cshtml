@@ -47,7 +47,7 @@
                         <label asp-for="Teachers">Teacher</label>
                         <select class="form-control" asp-for="TeachersId">
                             @foreach (var teacher in Model.Teachers)
-                           {
+                            {
                                if (Model.SelectedEventsTeachers.FirstOrDefault(x=> x.TeacherId == teacher.Id) != null)
                                {
                                     <option selected value="@teacher.Id">@teacher.Name</option>

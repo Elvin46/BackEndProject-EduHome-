@@ -1,0 +1,19 @@
+﻿@model User
+@{
+    ViewData["Title"] = "_SubscribePartial";
+}
+@if (Model.IsSubscribed == false)
+{
+    <button id="subscribe" class="default-btn" ><span>subscribe</span></button>
+}
+else
+{
+    <button id="subscribe" class="default-btn" ><span>unsubscribe</span></button>
+}
+<!-- mailchimp-alerts Start -->
+<div class="mailchimp-alerts">
+    <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+    <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+    <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+</div>
+<!-- mailchimp-alerts end -->

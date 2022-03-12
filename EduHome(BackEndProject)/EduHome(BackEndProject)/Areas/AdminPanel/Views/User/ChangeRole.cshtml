@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using EduHome_BackEndProject_.Data;
+@model UserSystemViewModel
+@{
+    ViewData["Title"] = "ChangeRole";
+    UserSystemViewModel userSystemVM = Model;
+    List<IdentityRole> roles = userSystemVM.Roles;
+    string currentRole = userSystemVM.CurrenRole;
+    List<Course> courses = userSystemVM.Courses;
+    List<Course> selectedCourses = userSystemVM.SelectedCourses;
+    User user = userSystemVM.User;
+}
+
+<h1>Change Role</h1>
+<form method="post">
+    <select class="form-select" name="changedRole" id="changedRole">
+        @foreach (var role in roles)
+        {
+            if (role.Name == currentRole)
+            {
+                <option value="@role.Name" selected >@role.Name</option>
+            }
+            else
+            {
+                <option value="@role.Name">@role.Name</option>
+            }
+        }
+    </select>
+        <select class="form-control" asp-for="CourseId" id="select-course">
+            @foreach (var course in courses)
+            {
+                if (selectedCourses.FirstOrDefault(x=> x.Id == course.Id) != null)
+                {
+                    <option selected value="@course.Id">@course.Name</option>
+                }
+                else
+                {
+                    <option value="@course.Id">@course.Name</option>  
+                }
+            }
+        </select>
+    
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a class="btn btn-light" asp-action="Index">Cancel</a>
+</form>
+@section Scripts{
+    
+    <script>
+        $(document).ready(function(){
+            if($("#changedRole").val()==="Moderator"){
+                $("#select-course").removeClass("d-none");
+            }
+            else{
+                $("#select-course").addClass("d-none");
+            }
+        })
+        $(document).on('change', "#changedRole", function(){
+            if($(this).val()==="Moderator"){
+                $("#select-course").removeClass("d-none");
+            }
+            else{
+                $("#select-course").addClass("d-none");
+            }
+        })
+    </script>
+}

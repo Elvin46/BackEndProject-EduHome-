@@ -1,17 +1,22 @@
 ﻿using EduHome_BackEndProject_.Areas.AdminPanel.Data;
+using EduHome_BackEndProject_.Data;
 using EduHome_BackEndProject_.DataAccessLayer;
 using EduHome_BackEndProject_.Models;
 using EduHome_BackEndProject_.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize(Roles = RoleConstants.AdminRole)]
     public class EventController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -86,6 +91,31 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             }
             await _dbContext.Events.AddAsync(eventVM.Event);
             await _dbContext.SaveChangesAsync();
+            var existEvent = await _dbContext.Events
+                .Where(x => x.IsDeleted == false && x.Title.ToLower() == eventVM.Event.Title.ToLower())
+                .FirstOrDefaultAsync();
+            //string link = Url.Action(nameof(Detail), "Event", new { id = existEvent.Id }, Request.Scheme, Request.Host.ToString());
+            string link = "https://localhost:44380/Event/Details/"+existEvent.Id.ToString();
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("codep320@gmail.com", "EduHome");
+            var users = await _dbContext.Users.Where(x => x.IsSubscribed).ToListAsync();
+            foreach (var user in users)
+            {
+                msg.To.Add(user.Email);
+            }
+
+
+            msg.Body = $"<a href=\"{link}\">We have new Event.You can see details with this link.</a>";
+            msg.Subject = "New event created.You should look at this.";
+            msg.IsBodyHtml = true;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("codep320@gmail.com", "codeacademyp320");
+            smtp.Send(msg);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Delete(int? id)

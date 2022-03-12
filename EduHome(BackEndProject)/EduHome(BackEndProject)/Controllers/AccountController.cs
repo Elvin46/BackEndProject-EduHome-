@@ -57,10 +57,9 @@ namespace EduHome_BackEndProject_.Controllers
             }
             oldCodes.Add(verificationCode);
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("codep320@gmail.com", "Fiorello");
+            msg.From = new MailAddress("codep320@gmail.com", "EduHome");
             msg.To.Add(user.Email);
-            msg.Body = $"Please Verify Your EduHome Account!" +
-                $"<h2>Your verification code:\"{verificationCode}\"</h2>";
+            msg.Body = $"<h2>Your verification code:\"{verificationCode}\"</h2>";
             msg.Subject = "Verify EduHome Account";
             msg.IsBodyHtml = true;
 
@@ -110,6 +109,11 @@ namespace EduHome_BackEndProject_.Controllers
                 ModelState.AddModelError("", "Please Verify Your Account");
                 return View();
             }
+            if (existUser.IsActive == false)
+            {
+                ModelState.AddModelError("", "This User isn't Active");
+                return View();
+            }
             var result = await _signInManager.PasswordSignInAsync(existUser, loginVM.Password, loginVM.RememberMe, true);
             if (result.IsLockedOut)
             {
@@ -127,7 +131,7 @@ namespace EduHome_BackEndProject_.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Login));
         }
         public IActionResult Verify()
         {
@@ -179,7 +183,7 @@ namespace EduHome_BackEndProject_.Controllers
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
 
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("codep320@gmail.com", "Fiorello");
+            msg.From = new MailAddress("codep320@gmail.com", "EduHome");
             msg.To.Add(user.Email);
 
 
@@ -242,5 +246,29 @@ namespace EduHome_BackEndProject_.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        public async Task<IActionResult> Subscribe(string id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if(user.IsSubscribed == false)
+            {
+                user.IsSubscribed = true;
+                
+            }
+            else
+            {
+                user.IsSubscribed = false;
+            }
+            await _userManager.UpdateAsync(user);
+            return PartialView("_SubscribePartial",user);
+        }
+        
     }
 }

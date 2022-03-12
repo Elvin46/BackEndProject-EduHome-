@@ -44,4 +44,9 @@
     </div>
 </div>
 <!-- Teacher End -->
+@if (User.Identity.IsAuthenticated)
+{ 
+    @await Component.InvokeAsync("Subscribe");
+}
+
 

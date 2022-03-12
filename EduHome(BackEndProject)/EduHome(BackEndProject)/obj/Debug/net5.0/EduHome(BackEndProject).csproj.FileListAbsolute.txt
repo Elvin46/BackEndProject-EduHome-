@@ -280,3 +280,7 @@ C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(Back
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SearchCoursePartial.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SearchBlogPartial.cshtml.g.cs
 C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SearchEventPartial.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\User\Index.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\User\ChangeRole.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\User\ChangePassword.cshtml.g.cs
+C:\Users\HP\Desktop\BackEndProject-EduHome-\EduHome(BackEndProject)\EduHome(BackEndProject)\obj\Debug\net5.0\Razor\Views\Shared\_SubscribePartial.cshtml.g.cs

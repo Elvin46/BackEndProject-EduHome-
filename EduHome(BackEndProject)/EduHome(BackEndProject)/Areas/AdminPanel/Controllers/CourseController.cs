@@ -1,30 +1,54 @@
 ﻿using EduHome_BackEndProject_.Areas.AdminPanel.Data;
+using EduHome_BackEndProject_.Data;
 using EduHome_BackEndProject_.DataAccessLayer;
 using EduHome_BackEndProject_.Models;
 using EduHome_BackEndProject_.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    //[Authorize(Roles = RoleConstants.AdminRole)]
+    [Authorize(Roles = "Admin,Moderator")]
     public class CourseController : Controller
     {
         private readonly AppDbContext _dbContext;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public CourseController(AppDbContext dbContext)
+        public CourseController(AppDbContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public async Task<IActionResult> Index()
         {
-            var courses = await _dbContext.Courses.Include(x => x.Category).Where(x => !x.IsDeleted).ToListAsync();
+            var courses = new List<Course>();
+            if (User.IsInRole(RoleConstants.ModeratorRole))
+            {
+                var moderator = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                courses = await _dbContext.Courses
+                    .Include(x => x.Category).Include(y => y.User)
+                    .Where(x => !x.IsDeleted && x.UserId == moderator.Id).ToListAsync();
+                return View(courses);
+            }
+            
+            courses = await _dbContext.Courses.Include(x => x.Category).Where(x => !x.IsDeleted).ToListAsync();
 
             return View(courses);
         }
+        [Authorize(Roles = RoleConstants.AdminRole)]
         public async Task<IActionResult> Create()
         {
             var Categories = await _dbContext.Categories
@@ -75,10 +99,14 @@ namespace EduHome_BackEndProject_.Areas.AdminPanel.Controllers
             var fileName = await course.Photo.GenerateFile(Constants.ImageFolderPath, "course");
             course.Image = fileName;
             course.CategoryId = CategoryId;
+            var username = User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(username);
+
             await _dbContext.Courses.AddAsync(course);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = RoleConstants.AdminRole)]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

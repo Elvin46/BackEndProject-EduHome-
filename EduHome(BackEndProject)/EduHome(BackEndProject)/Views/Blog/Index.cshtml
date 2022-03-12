@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
     var controller = ViewContext.RouteData.Values["controller"].ToString();
 }
-
+@await Component.InvokeAsync("Banner");
 <!-- Blog Start -->
 <div class="blog-area pt-150 pb-150">
     <div class="container">
@@ -59,4 +59,9 @@
     </div>
 </div>
 <!-- Blog End -->
+@if (User.Identity.IsAuthenticated)
+{ 
+    @await Component.InvokeAsync("Subscribe");
+}
+
 

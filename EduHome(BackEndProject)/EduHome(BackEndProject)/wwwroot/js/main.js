@@ -133,17 +133,29 @@ $(".notice-left").niceScroll({
 
 $(document).ready(function () {
     var searchedtext;
+    var userId = $("#userId").val();
     var controller = $("#controller").val();
-    $(document).on('keyup', `#search-${controller.toLowerCase()}`, function () {
+    $(document).on('keyup', `#search-${controller}`, function () {
         $(`#${controller.toLowerCase()}-list`).empty();
         searchedtext = $(this).val();
         $.ajax({
             type: "get",
             url: `/${controller}/search?searchedtext=` + searchedtext,
             success: function (res) {
-                console.log(res);
                 $(`#${controller.toLowerCase()}-list`).append(res);
             }
         })
     });
+    $(document).on('click','#subscribe', function () {
+        $("#subscribe-box").empty();
+        console.log(userId);
+        $.ajax({
+            type: "get",
+            url: '/Account/Subscribe?id=' + userId,
+            success: function (res) {
+                $("#subscribe-box").append(res);
+                console.log("salam");
+            }
+        })
+    })
 })
