@@ -13,7 +13,14 @@
                     <p>@subscribe.Subtitle</p>
                 </div>
                 <div class="newsletter-form mc_embed_signup text-center" id="subscribe-box">
-                    <button id="subscribe" class="default-btn" ><span>subscribe</span></button>
+                    @if (user.IsSubscribed == false)
+                    {
+                        <button id="subscribe" class="default-btn" ><span>subscribe</span></button>
+                    }
+                    else
+                    {
+                        <button id="subscribe" class="default-btn" ><span>unsubscribe</span></button>
+                    }
                     <input id="userId" value ="@user.Id" type="hidden"/>
                     <!-- mailchimp-alerts Start -->
                     <div class="mailchimp-alerts">

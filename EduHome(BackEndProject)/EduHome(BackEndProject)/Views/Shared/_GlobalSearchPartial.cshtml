@@ -1,0 +1,98 @@
+﻿@model GlobalSearchViewModel
+@if (Model.Blogs.Count()==0)
+{
+<h2 style="font-size:12px; text-align:end">Blogs:</h2>
+    
+}
+@foreach (var blog in Model.Blogs)
+{
+<li>
+    <div class="single-post mb-30" style="height: 84px;">
+        <div class="single-post-img">
+            <a asp-controller="Blog" asp-action="Details" asp-route-id=@blog.Id>
+                <img src="~/img/blog/@blog.Image" style="width: 95px; height:84px;" alt="post">
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </a>
+        </div>
+        <div class="single-post-content">
+            <h4 style="font-size:11px;"><a asp-controller="Blog" asp-action="Details" asp-route-id=@blog.Id>@blog.Title</a></h4>
+            <p style="font-size:9px;">By @blog.ByWho  /  @String.Format("{0:d MMM, yyyy}",   blog.Created)</p>
+        </div>
+    </div> 
+</li>
+}
+@if (Model.Courses.Count()==0)
+{
+<h2 style="font-size:12px; text-align:end">Courses:</h2>
+    
+}
+@foreach (var course in Model.Courses)
+{
+<li>
+    <div class="single-post mb-30" style="height: 84px;">
+        <div class="single-post-img">
+            <a asp-controller="course" asp-action="Details" asp-route-id=@course.Id>
+                <img src="~/img/course/@course.Image" style="width: 95px; height:84px;" alt="post">
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </a>
+        </div>
+        <div class="single-post-content">
+            <h4 style="font-size:11px;"><a asp-controller="Course" asp-action="Details" asp-route-id=@course.Id>@course.Name</a></h4>
+        </div>
+    </div> 
+</li>
+}
+
+@if (Model.Events.Count()==0)
+{
+<h2 style="font-size:12px; text-align:end">Events:</h2>
+    
+}
+@foreach (var eventt in Model.Events)
+{
+<li>
+    <div class="single-post mb-30" style="height: 84px;">
+        <div class="single-post-img">
+            <a asp-controller="Event" asp-action="Details" asp-route-id=@eventt.Id>
+                <img src="~/img/event/@eventt.Image" style="width: 95px; height:84px;" alt="post">
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </a>
+        </div>
+        <div class="single-post-content">
+            <h4 style="font-size:11px;"><a asp-controller="Event" asp-action="Details" asp-route-id=@eventt.Id>@eventt.Title</a></h4>
+            <p style="font-size:9px;">@String.Format("{0:d MMM, yyyy}",   eventt.Created)</p>
+        </div>
+    </div> 
+</li>
+}
+
+@if (Model.Teachers.Count()==0)
+{
+<h2 style="font-size:12px; text-align:end">Teachers:</h2>
+    
+}
+@foreach (var teacher in Model.Teachers)
+{
+<li>
+    <div class="single-post mb-30" style="height: 84px;">
+        <div class="single-post-img">
+            <a asp-controller="teacher" asp-action="Details" asp-route-id=@teacher.Id>
+                <img src="~/img/teacher/@teacher.Image" style="width: 95px; height:84px;" alt="post">
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </a>
+        </div>
+        <div class="single-post-content">
+            <h4 style="font-size:11px;"><a asp-controller="Teacher" asp-action="Details" asp-route-id=@teacher.Id>@teacher.Name</a></h4>
+            <p style="font-size:9px;">@teacher.Profession</p>
+        </div>
+    </div> 
+</li>
+}

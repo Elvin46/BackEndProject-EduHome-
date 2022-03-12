@@ -32,19 +32,19 @@
             <h3>latest post</h3>
             @foreach (var blog in Model.Blogs)
            {
-              <div class="single-post mb-30" style="height: 84px;">
-                <div class="single-post-img">
-                    <a href="blog-details.html"><img src="~/img/blog/@blog.Image" style="width: 95px; height:84px;" alt="post">
-                        <div class="blog-hover">
-                            <i class="fa fa-link"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="single-post-content">
-                    <h4><a href="blog-details.html">@blog.Title</a></h4>
-                    <p>By @blog.ByWho  /  @String.Format("{0:d MMM, yyyy}",   blog.Created)</p>
-                </div>
-            </div> 
+                <div class="single-post mb-30" style="height: 84px;">
+                    <div class="single-post-img">
+                        <a href="blog-details.html"><img src="~/img/blog/@blog.Image" style="width: 95px; height:84px;" alt="post">
+                            <div class="blog-hover">
+                                <i class="fa fa-link"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="single-post-content">
+                        <h4><a href="blog-details.html">@blog.Title</a></h4>
+                        <p>By @blog.ByWho  /  @String.Format("{0:d MMM, yyyy}",   blog.Created)</p>
+                    </div>
+                </div> 
            }
             
         </div>

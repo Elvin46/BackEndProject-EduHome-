@@ -133,10 +133,11 @@ $(".notice-left").niceScroll({
 
 $(document).ready(function () {
     var searchedtext;
-    var userId = $("#userId").val();
-    var controller = $("#controller").val();
+    if ($("#controller").val() != null) {
+        var controller = $("#controller").val().toLowerCase();
+    }
     $(document).on('keyup', `#search-${controller}`, function () {
-        $(`#${controller.toLowerCase()}-list`).empty();
+        $(`#${controller}-list`).empty();
         searchedtext = $(this).val();
         $.ajax({
             type: "get",
@@ -146,16 +147,36 @@ $(document).ready(function () {
             }
         })
     });
-    $(document).on('click','#subscribe', function () {
-        $("#subscribe-box").empty();
-        console.log(userId);
-        $.ajax({
-            type: "get",
-            url: '/Account/Subscribe?id=' + userId,
-            success: function (res) {
-                $("#subscribe-box").append(res);
-                console.log("salam");
-            }
-        })
+})
+var userId = $("#userId").val();
+$(document).on('click', '#subscribe', function () {
+    $("#subscribe-box").empty();
+    $.ajax({
+        type: "get",
+        url: '/Account/Subscribe?id=' + userId,
+        success: function (res) {
+            $("#subscribe-box").append(res);
+            console.log("salam");
+        }
     })
+})
+
+
+$(document).ready(function () {
+    var searchedText;
+    $(document).on('keyup', `#global-search`, function () {
+        $('#search-result').empty();
+        searchedText = $(this).val();
+        if (searchedText.length > 0) {
+            $.ajax({
+                type: "get",
+                url: `/GlobalSearch/Search?searchedText=` + searchedText,
+                success: function (res) {
+                    console.log(res);
+                    $('#search-result').append(res);
+                }
+            })
+        }
+       
+    });
 })

@@ -46,7 +46,6 @@ namespace EduHome_BackEndProject_.ViewModels
         public double Price { get; set; }
         public int CategoryId { get; set; }
         [NotMapped]
-        [Required]
         public IFormFile Photo { get; set; }
     }
 }
