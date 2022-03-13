@@ -28,19 +28,6 @@
     </div>
 </div>
 @section Scripts{
-    
-    <script>
-        $("#isMain").prop('checked', false);
-        $(document).on('change', "#IsMain", function(){
-            if($(this).is(":checked")){
-                $("#photoDiv").removeClass("d-none");
-                $("#parentCategoryDiv").addClass("d-none");
-            }
-            else{
-                $("#photoDiv").addClass("d-none");
-                $("#parentCategoryDiv").removeClass("d-none");
-            }
-        })
-    </script>
+    <partial name="_ValidationScriptsPartial" />
 }
 

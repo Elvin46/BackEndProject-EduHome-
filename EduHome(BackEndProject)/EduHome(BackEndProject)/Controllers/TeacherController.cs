@@ -1,6 +1,7 @@
 ﻿using EduHome_BackEndProject_.DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EduHome_BackEndProject_.Controllers
@@ -16,7 +17,7 @@ namespace EduHome_BackEndProject_.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var teachers = await _dbContext.Teachers.ToListAsync();
+            var teachers = await _dbContext.Teachers.Where(x=>!x.IsDeleted).ToListAsync();
             if (teachers == null)
             {
                 return NotFound();

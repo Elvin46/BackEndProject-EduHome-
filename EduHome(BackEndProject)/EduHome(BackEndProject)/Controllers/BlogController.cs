@@ -18,7 +18,7 @@ namespace EduHome_BackEndProject_.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var blogs = await _dbContext.Blogs.ToListAsync();
+            var blogs = await _dbContext.Blogs.Where(x=>!x.IsDeleted).ToListAsync();
             blogs.OrderBy(x => x.Created);
             blogs.Reverse();
             if (blogs == null)

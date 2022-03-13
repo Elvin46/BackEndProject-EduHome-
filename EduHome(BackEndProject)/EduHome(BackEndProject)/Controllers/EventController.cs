@@ -2,6 +2,7 @@
 using EduHome_BackEndProject_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,9 +18,11 @@ namespace EduHome_BackEndProject_.Controllers
             _dbContext = dbContext;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var events = await _dbContext.Events.ToListAsync();
+            ViewBag.PageCount = Math.Ceiling((decimal)_dbContext.Events.Count() / 6);
+            ViewBag.CurrentPage = page;
+            var events = await _dbContext.Events.Where(x=> !x.IsDeleted).Skip((page - 1) * 6).Take(6).ToListAsync();
             if (events == null)
             {
                 return NotFound();

@@ -31,10 +31,10 @@ namespace EduHome_BackEndProject_.Controllers
             var notices = await _dbContext.Notices.ToListAsync();
             var testimonials = await _dbContext.Testimonials.ToListAsync();
             var subscribe = await _dbContext.Subscribes.SingleOrDefaultAsync();
-            var courses = await _dbContext.Courses.Take(3).ToListAsync();
+            var courses = await _dbContext.Courses.Where(x=>!x.IsDeleted).Take(3).ToListAsync();
             var coursesSection = await _dbContext.CoursesSections.SingleOrDefaultAsync();
-            var events = await _dbContext.Events.Take(4).ToListAsync();
-            var blogs = await _dbContext.Blogs.Take(3).ToListAsync();
+            var events = await _dbContext.Events.Take(4).Where(x => !x.IsDeleted).ToListAsync();
+            var blogs = await _dbContext.Blogs.Take(3).Where(x => !x.IsDeleted).ToListAsync();
             return View(new HomeViewModel
             {
                 Sliders = sliders,

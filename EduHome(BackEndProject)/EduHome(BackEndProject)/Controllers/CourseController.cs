@@ -19,7 +19,7 @@ namespace EduHome_BackEndProject_.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var courses = await _dbContext.Courses.ToListAsync();
+            var courses = await _dbContext.Courses.Where(x=>!x.IsDeleted).ToListAsync();
             return View(courses);
         }
         public async Task<IActionResult> Details(int? id)
